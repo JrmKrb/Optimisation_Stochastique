@@ -1,0 +1,11 @@
+\beamer@endinputifotherversion {3.36pt}
+\select@language {french}
+\beamer@sectionintoc {1}{State of the art}{3}{0}{1}
+\beamer@sectionintoc {2}{Problem}{4}{0}{2}
+\beamer@subsectionintoc {2}{1}{Description}{4}{0}{2}
+\beamer@subsectionintoc {2}{2}{Formulation}{5}{0}{2}
+\beamer@sectionintoc {3}{Resolution}{6}{0}{3}
+\beamer@subsectionintoc {3}{1}{One resource case}{6}{0}{3}
+\beamer@subsectionintoc {3}{2}{Joint probabilities}{7}{0}{3}
+\beamer@subsectionintoc {3}{3}{Individual relaxed probabilities}{8}{0}{3}
+\beamer@subsectionintoc {3}{4}{Results}{9}{0}{3}
