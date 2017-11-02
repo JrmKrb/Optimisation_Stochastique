@@ -3,6 +3,7 @@
 \usepackage[frenchb]{babel}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage{amsmath}
 
 \usetheme{Warsaw}
 
@@ -23,33 +24,139 @@
 \end{frame}      
 % ----------------------------
 
+\begin{frame}
+Shortest Path is a known problem and has many applications in "real life".
+
+\begin{itemize}
+	\item Goods transport (industrial and private)
+	\item Food Delivery (Deliveroo - Foodora - UberEats)
+\end{itemize}
+
+\end{frame}
 
 \section{State of the art}
 
 \begin{frame}
-Blablabla known problem, lots of industrial applications, transportation of merchandise, Food delivery, start-ups (Shippeo, maybe even Deliveroo and Foodora)
-\end{frame}
 
+As this problem is well known, lots of scientists presented their work on related subject, most of the times with different hypotheses:
+
+\begin{itemize}
+	\item<2-> Without Resource constraints
+	\item<3-> With deterministic resource constraints
+	\item<4-> With stochastic resource constraints
+\end{itemize}
+
+\uncover<5->{or also with a different optimization problem like utility functions to maximize or cost functions to minimize.}
+\end{frame}
 
 
 \section{Problem}
 \subsection{Description}
 
 \begin{frame}
-Description du problème, voyageur de commerce + consommation de ressources (essence, denrées, etc.)
-Rajouter exemple avec une ressource (comme dans l'article)
+	<Insert Picture from the article and explain orally>
+\end{frame}
+
+\subsection{Hypothesis}
+\begin{frame}
+	\begin{itemize}
+		\item Graph with weights on arcs, source node $s$ and sink node $t$,
+		\item Stochastic resource consumptions with normal distribution,
+		\item K resources,
+		\item Threshold C of the cost function (maximum allowed weight of the path).
+	\end{itemize}
 \end{frame}
 
 \subsection{Formulation}
 \begin{frame}
-Math formulation
+
+SRCSP can be formulated as this optimization problem:
+
+\begin{align*}
+ max\ &\mathbf{Pr} \{ \tilde{a}_k^Tx \leq d_k, k=1..K \} \\ \\
+ s.t.\ &c^T \leq C \\
+ &Mx = b \\
+ &x \in \{0, 1\}^n
+\end{align*}
+
+where:
+
+\begin{itemize}
+	\item $x(e) = 1$ if $x(e) \in $ path $P$
+	\item The $a_k$ are multi-variate vectors with mean $\mu_k$ and known covariance matrix $V_k$
+	\item M is the node-arc incidence matrix. $M(i, e) \in \{-1, 0, 1\}$
+	\item b is a vector with 0 everywhere except $b(s) = 1$ and $b(t) = -1$
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+
+SRCSP can be reformulated as:
+
+\begin{align*}
+ max\ & p\\
+ s.t.\ & p \leq \mathbf{Pr} \{ \tilde{a}_k^Tx \leq d_k, k=1..K \} \\
+ & c^T \leq C \\
+ & Mx = b \\
+ & x \in \{0, 1\}^n
+\end{align*}
+
 \end{frame}
 
 \section{Resolution}
 \subsection{One resource case}
 \begin{frame}
-Put the formulation
-Explain the Binary Search Procedure
+
+With $K=1$ we have:
+
+\begin{align*}
+ max\ & p\\
+ s.t.\ & p \leq \mathbf{Pr} \{ \tilde{a}_1^Tx \leq d_1 \} \\
+ & c^T \leq C \\
+ & Mx = b \\
+ & x \in \{0, 1\}^n
+\end{align*}
+
+\end{frame}
+
+\begin{frame}
+Explain how we get the formula at the next slide
+\end{frame}
+
+\begin{frame}
+Using the known multivariate distribution parameters we get :
+
+\begin{align*}
+ max\ & p\\
+ s.t.\ & F^{-1}(p)(x^TV_1x)^{\frac{1}{2}} \leq d_1 - \mu_1^Tx \\
+ & c^T \leq C \\
+ & Mx = b \\
+ & x \in \{0,1\}
+\end{align*}
+\end{frame}
+
+\begin{frame}
+Relaxing the problem we get (SRCSPI) with $p \leq \frac{1}{2}$ :
+
+\begin{align*}
+ max\ & 0\\
+ s.t.\ & F^{-1}(p)(x^TV_1x)^{\frac{1}{2}} \leq d_1 - \mu_1^Tx \\
+ & c^T \leq C \\
+ & Mx = b \\
+ & 0 \leq x \leq 1
+\end{align*}
+\end{frame}
+
+\begin{frame}
+We can solve it using the binary search procedure. We take $p_1 \leq \frac{1}{2}$ a feasible solution, a lower bound of SRCSP. $p_l$ and $p_u$ are lower and upper bounds of SRCSPI. Then we iterate:
+
+\begin{itemize}
+\item[Start]<2-> $p_l = \frac{1}{2}$ and $p_u = 1$. Iteration counter $t = 1$
+\item[Search]<3-> Solve SRCSPI with $p = p_t$. If SRCSPI has an optimal solution, set $p_l = p_t$, otherwise $p_u = p_t$.
+\item[Stop]<4-> Stop when $\frac{p_u - p_l}{2} \leq \epsilon$. Otherwise $t++$ and $p_t = \frac{p_l + p_u}{2} $
+\end{itemize}
+
 \end{frame}
 
 \subsection{Joint probabilities}
