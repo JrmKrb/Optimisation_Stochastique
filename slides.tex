@@ -41,7 +41,7 @@ Shortest Path is a known problem and has many applications in "real life".
 As this problem is well known, lots of scientists presented their work on related subject, most of the times with different hypotheses:
 
 \begin{itemize}
-	\item<2-> Without Resource constraints
+	\item<2-> Without resource constraints
 	\item<3-> With deterministic resource constraints
 	\item<4-> With stochastic resource constraints
 \end{itemize}
@@ -106,6 +106,7 @@ SRCSP can be reformulated as:
 
 \section{Resolution}
 \subsection{One resource case}
+\subsubsection{Formulation}
 \begin{frame}
 
 With $K=1$ we have:
@@ -118,10 +119,6 @@ With $K=1$ we have:
  & x \in \{0, 1\}^n
 \end{align*}
 
-\end{frame}
-
-\begin{frame}
-Explain how we get the formula at the next slide
 \end{frame}
 
 \begin{frame}
@@ -148,6 +145,7 @@ Relaxing the problem we get (SRCSPI) with $p \leq \frac{1}{2}$ :
 \end{align*}
 \end{frame}
 
+\subsubsection{Solution}
 \begin{frame}
 We can solve it using the binary search procedure. We take $p_1 \leq \frac{1}{2}$ a feasible solution, a lower bound of SRCSP. $p_l$ and $p_u$ are lower and upper bounds of SRCSPI. Then we iterate:
 
@@ -168,10 +166,43 @@ Explain how we get the approximation (Theorem 4.1.2), saying that we used this m
 \end{frame}
 
 \subsection{Individual relaxed probabilities}
+\subsubsection{Formulation}
 \begin{frame}
-Put the formulation
-Say problem is harder than the Joint probabilities, as we saw in class
-Explain how we solve it
+	We formulate this problem taking individual probabilities constraints:
+	
+\begin{align*}
+ max\ & p\\
+ s.t.\ & p \leq \mathbf{Pr} \{ \tilde{a}_k^Tx \leq d_k \}\textbf{,\ k=1,..,K} \\
+ & c^T \leq C \\
+ & Mx = b \\
+ & x \in \{0, 1\}^n
+\end{align*}
+\end{frame}
+
+\begin{frame}
+
+We can relax the equation as we did before:
+
+\begin{align*}
+ max\ & 0\\
+ s.t.\ & F^{-1}(p)(x^TV_kx)^{\frac{1}{2}} \leq d_k - \mu_k^Tx,\ k=1,..,K \\
+ & c^T \leq C \\
+ & Mx = b \\
+ & 0 \leq x_i \leq 1,\ i=1,..,n
+\end{align*}
+\end{frame}
+
+\subsubsection{Solution}
+
+\begin{frame}
+
+We use the relaxed equation using the Binary Search Procedure again:
+
+\begin{itemize}
+\item[Start] $p_l = \frac{1}{2}$ and $p_u = 1$. Iteration counter $t = 1$
+\item[Search] Solve SRCSPI with $p = p_t$. If SRCSPI has an optimal solution, set $p_l = p_t$, otherwise $p_u = p_t$.
+\item[Stop] Stop when $\frac{p_u - p_l}{2} \leq \epsilon$. Otherwise $t++$ and $p_t = \frac{p_l + p_u}{2} $
+\end{itemize}
 \end{frame}
 
 \subsection{Results}
