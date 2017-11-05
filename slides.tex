@@ -213,8 +213,44 @@ We use the relaxed equation using the Binary Search Procedure again:
 \end{frame}
 
 \subsection{Results}
+
 \begin{frame}
-Show results and analyze them (Why is this algorithm faster, why not, etc)
+\begin{itemize}
+	\item upper bound is more accurate
+\end{itemize}
+\hspace*{-0.8cm}
+\includegraphics[width=12cm]{media/optimum_upperbound.png}
+\end{frame}
+
+
+\begin{frame}
+\begin{itemize}
+	\item Individual relaxation upper bound computation is faster
+\end{itemize}
+\hspace*{-0.8cm}
+\includegraphics[width=12cm]{media/cpu_upper.png}
+\end{frame}
+	
+
+\begin{frame}
+\begin{itemize}
+	\item convex relaxation optimum computation is faster (upper bound is smaller)
+\end{itemize}
+\hspace*{-0.8cm}
+\includegraphics[width=12cm]{media/cpu_opt.png}
+\end{frame}
+
+\begin{frame}
+	Graphs kind
+	\begin{itemize}
+		\item \textbf{$(n,m) = (23,40)$ (chart)}.
+		\pause
+		\item $(n,m) = (50,413)$.
+		\pause
+		\item random graphs with $n=50$.
+	\end{itemize}
+	\pause
+	Method easily extendable to solve larger size instances.
 \end{frame}
 
 \end{document}
