@@ -117,6 +117,18 @@ SRCSP can be reformulated as:
 
 \end{frame}
 
+
+\begin{frame}
+	\begin{block}{Branch and bound framework}
+		\begin{itemize}
+			\pause
+			\item find the upper bound \only<4>{\textbf{- relaxation problem}}
+			\pause
+			\item find the optimum, using a binary search algorithm
+		\end{itemize}
+	\end{block}
+\end{frame}
+
 \section{Resolution}
 \subsection{One resource case}
 \subsubsection{Formulation}
@@ -214,6 +226,8 @@ Deterministic reformulation of SRCSPJ:
 			\pause
 			\item Secondly, we solve the SOCP problem, whose optimal value is an upper bound
 			of SRCSP.
+			\pause
+			\item Finally, we found the optimum with the binary search algorithm.
 		\end{itemize}
 	\end{block}
 \end{frame}
@@ -315,4 +329,29 @@ We use the relaxed equation using the Binary Search Procedure again:
 	Method easily extendable to solve larger size instances.
 \end{frame}
 
+\begin{frame}
+	\begin{block}{Conclusion}
+		\begin{itemize}
+			\pause
+			\item the paper proposes a branch and bound framework to solve the stochastic resource constrained shortest path 
+			\pause
+			\item it introduce a convex relaxation to found the upper bound.
+			\pause
+			\item it shows by experiments that this convex relaxation outperforms indivudal relaxation.
+		\end{itemize}
+	\end{block}
+	\pause
+	\begin{block}{Going further}
+		\begin{itemize}
+			\item generalize to dependent random variable
+			\pause
+			\item study the inflence of some variable (for exemple $N$, the number of segment in tangent approximation, on the CPU time / upper bound value.
+		\end{itemize}
+	\end{block}
+\end{frame}
+\begin{frame}
+	\begin{center}
+	\LARGE{Questions ?}
+	\end{center}
+\end{frame}
 \end{document}
