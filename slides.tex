@@ -124,7 +124,7 @@ SRCSP can be reformulated as:
 			\pause
 			\item find the upper bound \only<4>{\textbf{- relaxation problem}}
 			\pause
-			\item find the optimum, using a binary search algorithm
+			\item find the optimum, using branch and bound
 		\end{itemize}
 	\end{block}
 \end{frame}
@@ -200,7 +200,7 @@ We can solve it using the binary search procedure. We take $p_1 \leq \frac{1}{2}
  & 0 \leq x_i \leq 1, \ i = 1, ..., n
 \end{align*}
 \pause
-If $p$ is greater than a treshold value (theoreme 4.0.1), M(p) is convex.
+If $p$ is greater than a threshold value (theoreme 4.0.1), M(p) is convex.
 \end{frame}
 
 
@@ -227,7 +227,7 @@ Deterministic reformulation of SRCSPJ:
 			\item Secondly, we solve the SOCP problem, whose optimal value is an upper bound
 			of SRCSP.
 			\pause
-			\item Finally, we found the optimum with the binary search algorithm.
+			\item Finally, we found the optimum with branch and bound algorithm.
 		\end{itemize}
 	\end{block}
 \end{frame}
@@ -335,7 +335,7 @@ We use the relaxed equation using the Binary Search Procedure again:
 			\pause
 			\item the paper proposes a branch and bound framework to solve the stochastic resource constrained shortest path 
 			\pause
-			\item it introduce a convex relaxation to found the upper bound.
+			\item it introduces a convex relaxation to find the upper bound.
 			\pause
 			\item it shows by experiments that this convex relaxation outperforms indivudal relaxation.
 		\end{itemize}
@@ -345,7 +345,9 @@ We use the relaxed equation using the Binary Search Procedure again:
 		\begin{itemize}
 			\item generalize to dependent random variable
 			\pause
-			\item study the inflence of some variable (for exemple $N$, the number of segment in tangent approximation, on the CPU time / upper bound value.
+			\item study the influence of some variable (for exemple $N$, the number of segment in tangent approximation, on the CPU time / upper bound value).
+			\pause
+			\item find a lower bound to give the branch and bound algorithm with another approximation of $F^{-1}(p_0^{k})$.
 		\end{itemize}
 	\end{block}
 \end{frame}
