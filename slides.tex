@@ -171,12 +171,68 @@ We can solve it using the binary search procedure. We take $p_1 \leq \frac{1}{2}
 \end{frame}
 
 \subsection{Joint probabilities}
-\begin{frame}
-Put the formulation
-Explain why we are looking for convexity, using the lectures
-Explain how we get the approximation (Theorem 4.1.2), saying that we used this method in classes
+% Put the formulation
+% Explain why we are looking for convexity, using the lectures
+% Explain how we get the approximation (Theorem 4.1.2), saying that we used this method in classes
 
+\subsubsection{Formulation}
+\begin{frame}
+	We now consider $K > 1$.
+	
+	We can formulate the joint probabilistic SRCSP as follow:
+\begin{align*}
+ max\ & p\\
+ s.t.\ & p \leq \mathbf{Pr} \{ \tilde{a}_k^Tx \leq d_k ,\ k=1,..,K \} \\
+ SRCSPJ \ & c^T \leq C \\
+ & Mx = b \\
+ & 0 \leq x_i \leq 1, \ i = 1, ..., n
+\end{align*}
+\pause
+If $p$ is greater than a treshold value (theoreme 4.0.1), M(p) is convex.
 \end{frame}
+
+
+\begin{frame}
+
+Deterministic reformulation of SRCSPJ:
+
+\begin{align*}
+	max\ & p\\
+	s.t.\ & F^{-1}(p^{y_k})(x^TV_kx)^{\frac{1}{2}} \leq d_k - \mu_k^Tx,\ k=1,..,K \\
+	& \sum_{k=1}^K{y_k} = 1,\ y_k \geq 0,\ k=1, ..., K \\
+	& c^T x \leq C \\
+	& Mx = b,\ x \in \{0, 1\}^n.\\
+\end{align*}
+\end{frame}
+
+\begin{frame}
+	\begin{block}{Main idea}
+		\begin{itemize}
+			\pause
+			\item Firstly we approximate $F^{-1}(p_0^{k})$ with a piecewise tangent approximation of $y_k$. \\
+			Afterwards, we get an approximation, which is SOCP problem.
+			\pause
+			\item Secondly, we solve the SOCP problem, whose optimal value is an upper bound
+			of SRCSP.
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	Finally, we can approximate it with the following convex relaxation :
+
+\begin{align*}
+\min{\sum_{k=1}^K{y_k}}\\
+ s.t.\ & (\tilde{z}_k^TV_k\tilde{z}_k)^\frac{1}{2} \leq d_k - \mu_k^Tx,\ k=1, ..., K \\
+	& \tilde{z}_{ki} \geq a_jx_i +b_jy_{ki},\ j = 0, ..., n,\ i = 1, ..., n \\
+	& 0 \leq y_k \leq - \log_{p_0}{(2)},\ k = 1, ..., K \\
+	& 0 \leq y_{ki} \leq y_k,\ y_{ki} \geq y_k + x_i - 1,\ i =  1, ..., n,\ k = 1, ..., K \\
+	& c^Tx \leq C,\ Mx = B,\ 0 \leq x_i \leq 1,\ i=1, ..., n  \\
+	& M\tilde{y}_k = y_kb,\ k = 1, ..., K
+\end{align*}
+where $\tilde{y}_k = (y_{k1} , . . . , y_{kn})$
+\end{frame}
+
 
 \subsection{Individual relaxed probabilities}
 \subsubsection{Formulation}
